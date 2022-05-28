@@ -6,6 +6,7 @@ const products = [
     quantity: 20,
     price: 99.99,
     onSale: false,
+    rating: 3,
     categoryId: "12342ohub-0dg0-34jb-slj345jb532"
   },
   {
@@ -15,6 +16,7 @@ const products = [
     quantity: 20,
     price: 89.99,
     onSale: true,
+    rating: 4,
     categoryId: "98234bjhf-7fs4-28fk-3d6jfhj78sfs"
   },
   {
@@ -24,6 +26,7 @@ const products = [
     quantity: 20,
     price: 59.99,
     onSale: false,
+    rating: 2,
     categoryId: "foi234-3nj4-93nk-skjhb23qr48v"
   },
   {
@@ -33,6 +36,7 @@ const products = [
     quantity: 20,
     price: 29.99,
     onSale: true,
+    rating: 5,
     categoryId: "foi234-3nj4-93nk-skjhb23qr48v"
   },
   {
@@ -42,6 +46,7 @@ const products = [
     quantity: 20,
     price: 49.99,
     onSale: false,
+    rating: 3,
     categoryId: "12342ohub-0dg0-34jb-slj345jb532"
   },
 

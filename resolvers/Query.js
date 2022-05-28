@@ -17,10 +17,20 @@ exports.Query = {
   products: (parent, { filter }, context) => {
     let filteredProducts = products;
     //only returns products on sale
-    if (filter) {
+    if (onSale) {
+      const { onSale, avgRating } = filter
       if (filter.onSale === true) {
         filteredProducts = filteredProducts.filter(product => {
           return product.onSale;
+        })
+      }
+      //if avgRating num is not in this array just returns all products
+      if ([1, 2, 3, 4, 5].includes(avgRating)) {
+        filteredProducts = filteredProducts.filter(product => {
+          let sumRating = 0;
+          products.forEach((product) => {
+            sumRating += product.rating
+          });
         })
       }
     }

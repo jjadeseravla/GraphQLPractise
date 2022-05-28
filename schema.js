@@ -22,6 +22,7 @@ exports.typeDefs = gql`
     price: Float!
     onSale: Boolean!
     category: Category
+    rating: Int
   }
 
   type Category {
@@ -32,5 +33,6 @@ exports.typeDefs = gql`
 
   input ProductsFilterInput {
     onSale: Boolean
+    avgRating: Int
   }
 `

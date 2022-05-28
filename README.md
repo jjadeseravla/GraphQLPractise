@@ -36,3 +36,34 @@ query {
      onSale
    }
 }
+
+# See which products are on sale in a particular category 
+
+query {
+ category(id: "foi234-3nj4-93nk-skjhb23qr48v") {
+   name
+   products(filter: {
+     onSale: true
+   }) {
+     name
+     onSale
+     avgRating: 4
+   }
+ }
+}
+
+# answer:
+
+{
+  "data": {
+    "category": {
+      "name": "romantic",
+      "products": [
+        {
+          "name": "Love Bike",
+          "onSale": true
+        }
+      ]
+    }
+  }
+}
