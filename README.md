@@ -14,3 +14,14 @@ in variables:
 {
   categoryId: "ghjvsbkjdnkfb"
 }
+
+or:
+
+query {
+  products {
+    name
+    category {
+      name
+    }
+  }
+}
