@@ -8,15 +8,17 @@ const products = [
     description: "Mountain bike",
     quantity: 20,
     price: 99.99,
-    onSale: false
+    onSale: false,
+    categoryId: "12342ohub-0dg0-34jb-slj345jb532"
   },
   {
     id: "253-532-234deq-k453",
-    name: "BMX",
-    description: "Doing Crazy stunts bike",
+    name: "small BMX",
+    description: "Doing Crazy stunts bike for kids",
     quantity: 20,
     price: 89.99,
-    onSale: true
+    onSale: true,
+    categoryId: "98234bjhf-7fs4-28fk-3d6jfhj78sfs"
   },
   {
     id: "424-012-213pvf-n035",
@@ -24,7 +26,8 @@ const products = [
     description: "Bike for two",
     quantity: 20,
     price: 59.99,
-    onSale: false
+    onSale: false,
+    categoryId: "foi234-3nj4-93nk-skjhb23qr48v"
   },
   {
     id: "243-235-853erf-g342",
@@ -32,7 +35,8 @@ const products = [
     description: "pink one",
     quantity: 20,
     price: 29.99,
-    onSale: true
+    onSale: true,
+    categoryId: "foi234-3nj4-93nk-skjhb23qr48v"
   },
   {
     id: "253-643-264sdf-f904",
@@ -40,9 +44,25 @@ const products = [
     description: "Cycle Machine",
     quantity: 20,
     price: 49.99,
-    onSale: false
+    onSale: false,
+    categoryId: "12342ohub-0dg0-34jb-slj345jb532"
   },
 
+]
+
+const categories = [
+  {
+    id: "12342ohub-0dg0-34jb-slj345jb532",
+    name: "sporty"
+  },
+  {
+    id: "foi234-3nj4-93nk-skjhb23qr48v",
+    name: "romantic"
+  },
+  {
+    id: "98234bjhf-7fs4-28fk-3d6jfhj78sfs",
+    name: "kids"
+  },
 ]
 
 //schema
@@ -50,19 +70,28 @@ const products = [
 const typeDefs = gql`
   type Query {
     hello: [String]
-    numberOfAnimals: Int
-    price: Float
-    isCool: Boolean
+    # numberOfAnimals: Int
+    # price: Float
+    # isCool: Boolean
     products: [Product!]!
+    product(id: ID!): Product
+    categories: [Category!]!
+    category(id: ID!): Category
   }
 
   type Product {
-    id: String!
+    id: ID!
     name: String!
     description: String!
     quantity: Int!
     price: Float!
     onSale: Boolean!
+  }
+
+  type category {
+    id: ID!
+    name: String!
+    products: [Product!]!
   }
 `
 
@@ -71,17 +100,42 @@ const resolvers = {
     hello: () => {
       return ["Hello", "jade", null]
     },
-    numberOfAnimals: () => {
-      return 5
-    },
-    price: () => {
-      return 23.23
-    },
-    isCool: () => {
-      true
-    },
-    products: () => {
+    // numberOfAnimals: () => {
+    //   return 5
+    // },
+    // price: () => {
+    //   return 23.23
+    // },
+    // isCool: () => {
+    //   true
+    // },
+  
+    products: (parent, args, context) => {
       return products;
+    },
+    product: (parent, args, context) => {
+      const productId = args.id;
+      const product = products.find(product => product.id === productId);
+      if (!product) return null;
+      return product;
+    },
+
+    categories: (parent, args, context) => {
+      return categories;
+    },
+
+    category: (parent, args, context) => {
+      const { id } = args;
+      const category = categories.find((category) => category.id === id);
+      if (!category) return null;
+      return category;
+    }
+  },
+  Category: {
+    products: (parent, args, context) => {
+      console.log('parent', parent);
+      const categoryId = parent.id;
+      return products.filter((product) => product.categoryId === categoryId);
     }
   }
 }

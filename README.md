@@ -1,1 +1,16 @@
-localhost:4000 simulate client
+localhost:4000 simulate client with this example query
+
+query($categoryId: ID!) {
+  category(id: $categoryID) {
+    name
+    products {
+      name
+      price
+    }
+  }
+}
+
+in variables:
+{
+  categoryId: "ghjvsbkjdnkfb"
+}
