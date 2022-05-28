@@ -11,6 +11,11 @@ const server = new ApolloServer({
     Category,
     Product,
   },
+  context: {
+    sayHello: () => {
+      console.log("hello from context in index");
+    }
+  }
 });
 
 server.listen().then(({ url }) => {
