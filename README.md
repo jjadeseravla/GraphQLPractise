@@ -1,4 +1,4 @@
-localhost:4000 simulate client with this example query
+# localhost:4000 simulate client with this example query
 
 query($categoryId: ID!) {
   category(id: $categoryID) {
@@ -24,4 +24,15 @@ query {
       name
     }
   }
+}
+
+# To filter products based on if they are on sale:
+
+query {
+  products(filter: {
+    onSale: true
+    }) {
+     name
+     onSale
+   }
 }

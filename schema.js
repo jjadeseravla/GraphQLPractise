@@ -8,7 +8,7 @@ exports.typeDefs = gql`
     # numberOfAnimals: Int
     # price: Float
     # isCool: Boolean
-    products: [Product!]!
+    products(filter: ProductsFilterInput): [Product!]!
     product(id: ID!): Product
     categories: [Category!]!
     category(id: ID!): Category
@@ -27,6 +27,10 @@ exports.typeDefs = gql`
   type Category {
     id: ID!
     name: String!
-    products: [Product!]!
+    products(filter: ProductsFilterInput): [Product!]!
+  }
+
+  input ProductsFilterInput {
+    onSale: Boolean
   }
 `

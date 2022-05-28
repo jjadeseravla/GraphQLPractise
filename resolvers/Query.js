@@ -14,7 +14,16 @@ exports.Query = {
   //   true
   // },
 
-  products: (parent, args, context) => {
+  products: (parent, { filter }, context) => {
+    let filteredProducts = products;
+    //only returns products on sale
+    if (filter) {
+      if (filter.onSale === true) {
+        filteredProducts = filteredProducts.filter(product => {
+          return product.onSale;
+        })
+      }
+    }
     return products;
   },
   product: (parent, args, context) => {
@@ -35,3 +44,4 @@ exports.Query = {
     return category;
   }
 }
+

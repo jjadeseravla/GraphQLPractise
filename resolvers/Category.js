@@ -1,9 +1,20 @@
 
 exports.Category = {
-  products: ({id: categoryId}, args, { categories}) => {
-    console.log('parent', parent);
+  products: ({id: categoryId}, {filter}, context) => {
+    // console.log('parent', parent); and filter is inside parent
     // const categories = context.categories;
     // const categoryId = parent.id;
-    return products.filter((product) => product.categoryId === categoryId);
+
+    const categoryProducts = context.products.filter((product) => product.categoryId === categoryId);
+    let filteredCategoryProducts = categoryProducts;
+
+    if (filter) {
+      if (filter.onSale === true) {
+        filteredCategoryProducts = filteredCategoryProducts.filter((product) => {
+          return product.onSale;
+        })
+      }
+    }
+    return filteredCategoryProducts;
   }
 }
