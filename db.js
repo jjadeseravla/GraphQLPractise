@@ -67,4 +67,4 @@ const categories = [
   },
 ]
 
-module.exports = { products, categories };
+exports.db = { products, categories };

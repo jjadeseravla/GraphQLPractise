@@ -15,8 +15,10 @@ exports.typeDefs = gql`
   }
 
   type Mutation {
+    # underneath after colon you say what you want to return, eg a category that you just added
     addCategory(input: AddCategoryInput): Category!
     addProduct(input: AddProductInput): Product!
+    deleteCategory(id: ID!): Boolean!
   }
 
   type Product {
