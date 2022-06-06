@@ -16,6 +16,7 @@ exports.typeDefs = gql`
 
   type Mutation {
     addCategory(input: AddCategoryInput): Category!
+    addProduct(input: AddProductInput): Product!
   }
 
   type Product {
@@ -42,5 +43,14 @@ exports.typeDefs = gql`
 
   input AddCategoryInput {
     name: String!
+  }
+
+  input AddProductInput {
+    name: String!
+    description: String!,
+    quantity: Int!,
+    price: Float!,
+    onSale: Boolean!,
+    categoryId: String!
   }
 `
