@@ -19,6 +19,7 @@ exports.typeDefs = gql`
     addCategory(input: AddCategoryInput): Category!
     addProduct(input: AddProductInput): Product!
     deleteCategory(id: ID!): Boolean!
+    updateCategory(id: ID!, input: UpdateCategoryInput): Category
   }
 
   type Product {
@@ -44,6 +45,10 @@ exports.typeDefs = gql`
   }
 
   input AddCategoryInput {
+    name: String!
+  }
+
+  input UpdateCategoryInput {
     name: String!
   }
 

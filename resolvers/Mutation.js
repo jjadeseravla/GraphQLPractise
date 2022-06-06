@@ -29,7 +29,7 @@ exports.Mutation = {
     return newProduct;
   },
 
-  deleteCategory: (parent, args, { db }) => {
+  deleteCategory: (parent, {id}, { db }) => {
     db.categories = db.categories.filter(category => category.id !== id);
     db.products = db.products.map(product => {
       if (product.categoryId === id) return {
@@ -39,5 +39,17 @@ exports.Mutation = {
       else return product;
     })
     return true;
+  },
+
+  updateCategory: (parent, { id, input }, { db }) => {
+    // find index of element that shares this id
+    const index = db.categories.findIndex(category => category.id === id);
+    //if index does not exist
+    if (index === -1) return null;
+    db.categories[index] = {
+      ...db.categories[index],
+      ...input,
+    };
+    return db.categories[index];
   }
 }
