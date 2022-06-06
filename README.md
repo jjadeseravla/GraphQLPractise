@@ -67,3 +67,25 @@ query {
     }
   }
 }
+
+# Mutation: eg. to add a new category operation:
+
+mutation {
+  addCategory(input: {
+    name: "Office"
+  }) {
+    id
+    name
+  }
+}
+
+# response
+
+{
+  "data": {
+    "addCategory": {
+      "id": "e2e406b5-8121-42be-8931-75731b3e3181",
+      "name": "Office"
+    }
+  }
+}

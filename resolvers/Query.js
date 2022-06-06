@@ -31,6 +31,7 @@ exports.Query = {
           products.forEach((product) => {
             sumRating += product.rating
           });
+          return [1, 2, 3, 4, 5].some(value => { return value > avgRating })
         })
       }
     }
